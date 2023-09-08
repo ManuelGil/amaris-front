@@ -1,0 +1,43 @@
+<div class="card mb-5 mb-xl-8">
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Lista de comunas</span>
+    </h3>
+  </div>
+  <div class="card-body py-3">
+    <div class="table-responsive">
+      <table
+        class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+      >
+        <thead>
+          <tr class="fw-bolder text-muted">
+            <th class="min-w-25">Código</th>
+            <th class="min-w-25">Nombre</th>
+            <th class="min-w-25">Provincia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="communes$ | async as communes">
+            <tr *ngFor="let commune of communes">
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  commune.comuna.code
+                }}</span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  commune.comuna.name
+                }}</span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  commune.comuna.contained_in.provincia.code
+                }}</span>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,246 @@
+<div class="card mb-5 mb-xl-10">
+  <div
+    class="card-header border-0 cursor-pointer"
+    role="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#kt_account_profile_details"
+    aria-expanded="true"
+    aria-controls="kt_account_profile_details"
+  >
+    <div class="card-title m-0">
+      <h3 class="fw-bolder m-0">Editar un usuario</h3>
+    </div>
+  </div>
+  <ng-container *ngIf="user$ | async as _user">
+    <div class="collapse show">
+      <form
+        class="form w-100"
+        [formGroup]="updateUserForm"
+        novalidate="novalidate"
+        (ngSubmit)="submit()"
+      >
+        <div class="card-body border-top p-4">
+          <div class="row mb-3">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Nombre</label
+            >
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-10 fv-row">
+                  <input
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    type="text"
+                    formControlName="firstName"
+                    placeholder="Nombre"
+                    name="firstName"
+                    autocomplete="off"
+                    autofocus
+                    [(ngModel)]="_user.firstName"
+                    [ngClass]="{
+                      'is-invalid': updateUserForm.controls['firstName'].invalid,
+                      'is-valid': updateUserForm.controls['firstName'].valid
+                    }"
+                  />
+                </div>
+              </div>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'El nombre es requerido',
+                  control: updateUserForm.controls['firstName']
+                }"
+              >
+              </ng-container>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minLength',
+                  message: 'El nombre debe tener al menos 3 símbolos',
+                  control: updateUserForm.controls['firstName']
+                }"
+              >
+              </ng-container>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'maxLength',
+                  message: 'El nombre debe tener un máximo de 50 ​​símbolos',
+                  control: updateUserForm.controls['firstName']
+                }"
+              >
+              </ng-container>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6"
+              >Apellidos</label
+            >
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-10 fv-row">
+                  <input
+                    class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    type="text"
+                    formControlName="lastName"
+                    placeholder="Apellidos"
+                    name="lastName"
+                    autocomplete="off"
+                    [(ngModel)]="_user.lastName"
+                    [ngClass]="{
+                      'is-invalid': updateUserForm.controls['lastName'].invalid,
+                      'is-valid': updateUserForm.controls['lastName'].valid
+                    }"
+                  />
+                </div>
+              </div>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'required',
+                  message: 'El apellido es requerido',
+                  control: updateUserForm.controls['lastName']
+                }"
+              >
+              </ng-container>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'minLength',
+                  message: 'El apellido debe tener al menos 3 símbolos',
+                  control: updateUserForm.controls['lastName']
+                }"
+              >
+              </ng-container>
+              <ng-container
+                [ngTemplateOutlet]="formError"
+                [ngTemplateOutletContext]="{
+                  validation: 'maxLength',
+                  message: 'El apellido debe tener un máximo de 50 ​​símbolos',
+                  control: updateUserForm.controls['lastName']
+                }"
+              >
+              </ng-container>
+            </div>
+          </div>
+        <div class="row mb-3">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Teléfono</label
+          >
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-10 fv-row">
+                <input
+                  class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                  type="tel"
+                  formControlName="phone"
+                  placeholder="Teléfono"
+                  name="phone"
+                  autocomplete="off"
+                    [(ngModel)]="_user.phone"
+                  [ngClass]="{
+                    'is-invalid': updateUserForm.controls['phone'].invalid,
+                    'is-valid': updateUserForm.controls['phone'].valid
+                  }"
+                />
+              </div>
+            </div>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'required',
+                message: 'El teléfono es requerido',
+                control: updateUserForm.controls['phone']
+              }"
+            >
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'minLength',
+                message: 'El teléfono debe tener al menos 3 símbolos',
+                control: updateUserForm.controls['phone']
+              }"
+            >
+            </ng-container>
+            <ng-container
+              [ngTemplateOutlet]="formError"
+              [ngTemplateOutletContext]="{
+                validation: 'maxLength',
+                message: 'El teléfono debe tener un máximo de 15 ​​símbolos',
+                control: updateUserForm.controls['phone']
+              }"
+            >
+            </ng-container>
+          </div>
+        </div>
+        <ng-container *ngIf="communes$ | async as communes">
+          <div class="row mb-6">
+            <label class="col-lg-4 col-form-label required fw-bold fs-6">Comunas</label>
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-lg-10 fv-row">
+                  <select class="form-control form-control-lg form-control-solid mb-3 mb-lg-0"
+                    formControlName="communes" name="communes" autofocus
+                    [(ngModel)]="_user.communeName"
+                    [ngClass]="{
+                      'is-invalid': updateUserForm.controls['communes'].invalid,
+                      'is-valid': updateUserForm.controls['communes'].valid
+                    }">
+                    <option value="" selected disabled hidden>Seleccione una comuna</option>
+                    <option *ngFor="let commune of communes" [value]="commune.comuna.name">{{ commune.comuna.name }}</option>
+                  </select>
+                </div>
+              </div>
+              <ng-container [ngTemplateOutlet]="formError" [ngTemplateOutletContext]="{
+                      validation: 'required',
+                      message: 'La comuna son requeridas',
+                      control: updateUserForm.controls['communes']
+                    }">
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        </div>
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="updateUserForm.invalid"
+          >
+            <ng-container *ngIf="(isLoading$ | async) === false"
+              >Actualizar</ng-container
+            >
+            <ng-container *ngIf="isLoading$ | async">
+              <span clas="indicator-progress" [style.display]="'block'">
+                Por favor espere ...
+                <span
+                  class="spinner-border spinner-border-sm align-middle ms-2"
+                ></span>
+              </span>
+            </ng-container>
+          </button>
+        </div>
+      </form>
+
+      <ng-template
+        #formError
+        let-control="control"
+        let-message="message"
+        let-validation="validation"
+      >
+        <ng-container
+          *ngIf="
+            control.hasError(validation) && (control.dirty || control.touched)
+          "
+        >
+          <div class="fv-plugins-message-container">
+            <div class="fv-help-block">
+              <span role="alert">{{ message }}</span>
+            </div>
+          </div>
+        </ng-container>
+      </ng-template>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,64 @@
+<div class="card mb-5 mb-xl-8">
+  <div class="card-header border-0 pt-5">
+    <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Lista de usuarios</span>
+    </h3>
+  </div>
+  <div class="card-body py-3">
+    <div class="table-responsive">
+      <table
+        class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+      >
+        <thead>
+          <tr class="fw-bolder text-muted">
+            <th class="min-w-25">Nombre</th>
+            <th class="min-w-25">Apellidos</th>
+            <th class="min-w-25">Teléfono</th>
+            <th class="min-w-25">Comuna</th>
+            <th class="min-w-25 text-end">Herramientas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="users$ | async as users">
+            <tr *ngFor="let user of users">
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  user?.firstName
+                }}</span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  user?.lastName
+                }}</span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  user?.phone
+                }}</span>
+              </td>
+              <td>
+                <span class="text-dark fw-bolder d-block mb-1 fs-6">{{
+                  user?.communeName
+                }}</span>
+              </td>
+              <td class="text-end">
+                <a
+                  [routerLink]="['/users/update', user.id]"
+                  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                >
+                  <i class="bi bi-pencil text-info"></i>
+                </a>
+                <a
+                  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                  (click)="deleteUser(user.id)"
+                >
+                  <i class="bi bi-trash text-danger"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
